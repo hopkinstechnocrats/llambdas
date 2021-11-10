@@ -25,6 +25,11 @@ public class DriveSubsystem extends SubsystemBase {
     leftFollower = new WPI_TalonFX(Constants.leftFollowerCANID);
     rightMaster = new WPI_TalonFX(Constants.rightMasterCANID);
     rightFollower = new WPI_TalonFX(Constants.rightFollowerCANID);
+    leftMaster.configFactoryDefault();
+    rightMaster.configFactoryDefault();
+    leftFollower.configFactoryDefault();
+    rightFollower.configFactoryDefault();
+
     drive = new DifferentialDrive(
       leftMaster,
       rightMaster
@@ -34,7 +39,7 @@ public class DriveSubsystem extends SubsystemBase {
   }
 
   public void drive(double left, double right) {
-    drive.tankDrive(left, right);
+    drive.tankDrive(left * -0.75, right * -0.75);
   }
 
   @Override
